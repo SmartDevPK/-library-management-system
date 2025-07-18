@@ -39,7 +39,13 @@ app.post('/', (req, res) => {
   // Issues Book Route
 
   app.post('/issue', (req, res) => {
-    
+   const requestedBookName = req.body.bookName;
+   books.forEach(book => {
+    if(book.bookName === requestedBookName){
+        book.bookState = "Issued";
+    }
+    res.render('home', {data:books});
+   }) 
   })
 
   books.push(newBook);
