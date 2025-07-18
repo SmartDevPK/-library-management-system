@@ -36,9 +36,12 @@ app.post('/', (req, res) => {
     bookState: 'Available'
   };
 
-  // Issues Book Route
+   books.push(newBook);
+  res.render('home', { data: books });
+});
 
-  app.post('/issue', (req, res) => {
+  // Issues Book Route
+app.post('/issue', (req, res) => {
    const requestedBookName = req.body.bookName;
    books.forEach(book => {
     if(book.bookName === requestedBookName){
@@ -48,9 +51,20 @@ app.post('/', (req, res) => {
    }) 
   })
 
-  books.push(newBook);
-  res.render('home', { data: books });
-});
+// Return Book Route
+app.post('/return', (req, res) => {
+    const requestedBookName = req.body.bookName;
+    books.forEach(book => {
+     if (book.bookName === requestedBookName){
+        book.bookState = "Available"
+    }
+    })
+   
+    res.render('home', ({data: books}))
+})
+
+
+ 
 
 // Start Server
 app.listen(PORT, () => {
