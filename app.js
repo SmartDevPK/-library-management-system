@@ -63,7 +63,14 @@ app.post('/return', (req, res) => {
     res.render('home', ({data: books}))
 })
 
+//Detele Book Route
+app.post('/delete', (req, res)=> {
+    const requestedBookName = req.body.bookName;
+    books = books.filter(book.bookName !== requestedBookName);
 
+    res.render('home', ({data: books}))
+    
+})
  
 
 // Start Server
