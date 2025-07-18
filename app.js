@@ -9,7 +9,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 
+// Home Route Display Book
+app.get("/", (req, res) => {
+    res.render("home", { data: books });
+})
 
+
+// Start Server
 app.listen(PORT, () => {
     console.log(`App is runing on port ${PORT}`)
 })
